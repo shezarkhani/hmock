@@ -1,5 +1,7 @@
 package hmock;
 
+import hmock.http.HttpMethod;
+
 import org.eclipse.jetty.server.Server;
 
 public class HMock {
@@ -57,6 +59,11 @@ public class HMock {
 				}
 			}
 		}));
+	}
+	
+	public static HttpMethod on() {
+		
+		return null;
 	}
 	
 	/* instantiate this class does not make any sense */
