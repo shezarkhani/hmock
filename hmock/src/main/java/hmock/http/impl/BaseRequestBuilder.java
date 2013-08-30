@@ -5,6 +5,7 @@ import hmock.http.ResponseBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,7 +59,12 @@ public class BaseRequestBuilder implements RequestBuilder {
 		
 		InputStream response = _responseBuilder.getResponseBody();
 		
+		for(Entry<String, String> header : _responseBuilder.getResponseHeaders().entrySet()) {
+			servResponse.setHeader(header.getKey(), header.getValue());
+		}
+		
 		servResponse.setStatus(_responseBuilder.getStatus());
+		
 		IOUtils.copy(response, servResponse.getOutputStream());
 	}
 }
